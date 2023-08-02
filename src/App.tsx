@@ -1,13 +1,8 @@
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import Table from './components/Table';
-
-const queryClient = new QueryClient();
-
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Table />
-    </QueryClientProvider>
+    <>
+      <h1>Home</h1>
+    </>
   );
 }
 

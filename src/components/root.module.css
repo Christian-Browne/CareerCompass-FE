@@ -1,0 +1,42 @@
+.topNav {
+  margin-left: 250px;
+  background-color: #e3371e;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.topNav h1 {
+  margin: 0;
+  margin-left: 40px;
+  padding: 0.5em 0em;
+  color: #f1f1f1;
+}
+
+.sideNavbar {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #151f30;
+  overflow-x: hidden;
+  padding-top: 90px;
+}
+
+.navItem {
+  padding: 8px 30px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #f1f1f1;
+  display: block;
+}
+
+.navItem:hover {
+  color: #ff7a48;
+}
+
+.link {
+  text-decoration: none;
+}

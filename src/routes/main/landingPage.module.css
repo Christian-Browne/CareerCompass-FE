@@ -1,0 +1,87 @@
+.ctaSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.btn,
+.btn2 {
+  color: white;
+  padding: 2em 10em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #103778;
+  border: none;
+  transition-duration: 0.4s;
+  border-radius: 50px;
+}
+.btn2 {
+  background-color: #151f30;
+}
+.btn:hover {
+  background-color: #e3371e;
+}
+.btn2:hover {
+  background-color: #e3371e;
+}
+
+.ctaLink {
+  color: #e3371e;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.hero {
+  background: linear-gradient(rgba(95, 122, 163, 0.419), rgba(0, 0, 0, 0.521)),
+    url('src/assets/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg');
+  background-size: cover;
+  background-position: 50%;
+  height: 100vh;
+  width: 50em;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.heroContent {
+  max-width: 800px;
+  padding: 2em 2em;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgb(0, 0, 0)),
+    url('src/assets/873_vhjpyw5nbgvzigjhy2tncm91bmqglsay.jpg');
+  background-size: cover;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 4em;
+}
+
+.heroTitle {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.heroSubtitle {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.heroImage {
+  max-width: 200px;
+}
+
+.landingPage {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20%;
+}

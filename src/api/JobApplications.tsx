@@ -9,7 +9,7 @@ export interface jobDataType {
   location: string;
   status: string;
   postUrl: string;
-  color: 'RED' | 'YELLOW' | 'PURPLE' | 'ORANGE' | 'PINK' | 'TEAL' | 'BLUE';
+  color: 'RED' | 'BLACK' | 'ORANGE' | 'TEAL' | 'BLUE';
 }
 
 export async function getJobApplications() {
