@@ -12,6 +12,15 @@ function Root() {
 
         <div className={styles.sideNavbar}>
           <Link to={'/'} className={styles.link}>
+            <li className={styles.navItemImage}>
+              <img
+                src="src/assets/careercompasslogo.png"
+                alt="logo"
+                className={styles.logoImage}
+              />
+            </li>
+          </Link>
+          <Link to={'/'} className={styles.link}>
             <li className={styles.navItem}>Home</li>
           </Link>
           <Link to={'/login'} className={styles.link}>

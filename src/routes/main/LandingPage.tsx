@@ -14,7 +14,7 @@ const LandingPage = () => {
               Join us on a journey to discover new horizons.
             </p>
             <img
-              src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+              src="src/assets/careercompasslogo.png"
               alt="Logo"
               className={styles.heroImage}
             />
