@@ -10,7 +10,8 @@
 .btn,
 .btn2 {
   color: white;
-  padding: 2em 10em;
+  padding: 2em 2em;
+  width: 22em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -67,7 +68,7 @@
   max-width: 800px;
   padding: 2em 2em;
   background-color: white;
-  border: 4px solid #151f30;
+  border: 2px solid darkgray;
   background-size: cover;
   border-radius: 20px;
   text-align: center;

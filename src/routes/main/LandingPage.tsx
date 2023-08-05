@@ -19,8 +19,12 @@ const LandingPage = () => {
               className={styles.heroImage}
             />
           </div>
-          <button className={styles.btn}>Login</button>
-          <button className={styles.btn2}>Signup</button>
+          <Link to={'login'}>
+            <button className={styles.btn}>Log in</button>
+          </Link>
+          <Link to={'signup'}>
+            <button className={styles.btn2}>Sign up</button>
+          </Link>
           <Link to={'demo'} className={styles.ctaLink}>
             <p>VIEW DEMO</p>
           </Link>

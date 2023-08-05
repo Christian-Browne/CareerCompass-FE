@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { Skeleton } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
@@ -58,13 +59,45 @@ function TableComponent() {
     status,
     error,
     data: jobData,
-  } = useQuery<jobDataType[]>({
-    queryKey: ['jobs'],
-    queryFn: getJobApplications,
-  });
+  } = useQuery<jobDataType[]>(['jobs'], () =>
+    getJobApplications(
+      'https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/demo'
+    )
+  );
 
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <Skeleton
+          variant="rounded"
+          width={1700}
+          height={70}
+          animation="wave"
+          sx={{ marginBottom: 2 }}
+        />
+        <Skeleton
+          variant="rounded"
+          width={1700}
+          height={70}
+          animation="wave"
+          sx={{ marginBottom: 2 }}
+        />
+        <Skeleton
+          variant="rounded"
+          width={1700}
+          height={70}
+          animation="wave"
+          sx={{ marginBottom: 2 }}
+        />
+        <Skeleton
+          variant="rounded"
+          width={1700}
+          height={70}
+          animation="wave"
+          sx={{ marginBottom: 2 }}
+        />
+      </>
+    );
   }
 
   if (status === 'error' || error) {
@@ -88,7 +121,7 @@ function TableComponent() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {jobData?.map((job) => {
+          {jobData?.map((job: any) => {
             const backgroundColor = colorMap[job.color as ColorKey];
             const textColor = backgroundColor
               ? getContrastTextColor(backgroundColor)

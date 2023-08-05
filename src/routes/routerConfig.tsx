@@ -3,6 +3,7 @@ import Root from '../components/Root';
 import LandingPage from './main/LandingPage';
 import Signup from './signup/Signup';
 import Login from './login/Login';
+import Dashboard from './main/Dashboard';
 
 const routes = [
   // Sign up page
@@ -26,6 +27,16 @@ const routes = [
       {
         path: '/demo',
         element: <HomeDemo />,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <Root />,
+    children: [
+      {
+        path: '/dashboard',
+        element: <Dashboard />,
       },
     ],
   },
