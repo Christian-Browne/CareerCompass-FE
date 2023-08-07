@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { CircularProgress } from '@mui/material';
-import ErrorLogin from '../../components/ErrorLogin';
+import { CircularProgress, Alert } from '@mui/material';
 import styles from './signup.module.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,7 +49,6 @@ const Signup = () => {
       setStatus(200);
       const data = await response.json();
       sessionStorage.setItem('token', data.token);
-      console.log(data);
       navigate('/dashboard');
     }
 
@@ -102,7 +100,12 @@ const Signup = () => {
         <button type="submit" className={styles.btn}>
           {status == 202 ? <CircularProgress color="inherit" /> : 'Submit'}
         </button>
-        {status === 403 && <ErrorLogin />}
+        {status === 403 && (
+          <Alert severity="error">
+            The email address or password you've entered doesn't match any
+            account
+          </Alert>
+        )}
       </div>
     </form>
   );
