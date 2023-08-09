@@ -1,0 +1,50 @@
+.panel {
+  padding: 3em 10em;
+  border: 1px solid darkgrey;
+  border-radius: 20px;
+}
+
+.panelContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+}
+
+.input {
+  padding: 1.5em;
+  width: 20em;
+  border: 1px solid darkgrey;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.inputAction {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputAction label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+.btn {
+  color: white;
+  padding: 1.5em 4em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 16em;
+  font-size: 1.2rem;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #103778;
+  border: none;
+  transition-duration: 0.4s;
+  border-radius: 100px;
+}
+
+.btn:hover {
+  background-color: #e3371e;
+}

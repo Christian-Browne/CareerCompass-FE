@@ -1,16 +1,14 @@
 import { styled } from '@mui/material/styles';
-import { Skeleton } from '@mui/material';
+import { Link } from 'react-router-dom';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useQuery } from '@tanstack/react-query';
-import { getJobApplications, jobDataType } from '../api/JobApplications';
+import { jobDataType } from '../api/JobApplications';
 import '../index.css';
-import { Link } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -54,56 +52,11 @@ function getContrastTextColor(backgroundColor: string) {
   return brightness > 155 ? 'black' : 'white'; // Threshold can be adjusted
 }
 
-function TableComponent() {
-  const {
-    status,
-    error,
-    data: jobData,
-  } = useQuery<jobDataType[]>(['jobs'], () =>
-    getJobApplications(
-      'https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/demo'
-    )
-  );
+type Props = {
+  jobData: jobDataType[];
+};
 
-  if (status === 'loading') {
-    return (
-      <>
-        <Skeleton
-          variant="rounded"
-          width={1700}
-          height={70}
-          animation="wave"
-          sx={{ marginBottom: 2 }}
-        />
-        <Skeleton
-          variant="rounded"
-          width={1700}
-          height={70}
-          animation="wave"
-          sx={{ marginBottom: 2 }}
-        />
-        <Skeleton
-          variant="rounded"
-          width={1700}
-          height={70}
-          animation="wave"
-          sx={{ marginBottom: 2 }}
-        />
-        <Skeleton
-          variant="rounded"
-          width={1700}
-          height={70}
-          animation="wave"
-          sx={{ marginBottom: 2 }}
-        />
-      </>
-    );
-  }
-
-  if (status === 'error' || error) {
-    return <div>An error occurred</div>;
-  }
-
+const JobsTables: React.FC<Props> = ({ jobData }) => {
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader sx={{ minWidth: 700 }} aria-label="customized table">
@@ -137,7 +90,7 @@ function TableComponent() {
             return (
               <StyledTableRow key={job.id}>
                 <StyledTableCell>
-                  <Link href="https://www.google.com">
+                  <Link to={`job/${job.id}`}>
                     <strong>
                       <span className="firstColumnText" style={style}>
                         {job.title}
@@ -158,6 +111,6 @@ function TableComponent() {
       </Table>
     </TableContainer>
   );
-}
+};
 
-export default TableComponent;
+export default JobsTables;

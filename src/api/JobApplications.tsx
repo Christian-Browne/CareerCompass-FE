@@ -1,5 +1,5 @@
 export interface jobDataType {
-  id: number;
+  id: string;
   title: string;
   logo: string;
   company: string;
@@ -41,5 +41,30 @@ export async function getJobApplicationsByUser(
   }
 
   const data: jobDataType[] = await response.json();
+  return data;
+}
+
+export async function getJobByUser(URL: string, id: string) {
+  const response = await fetch(URL + id, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    },
+  });
+
+  if (response.status === 401) {
+    const error = await response.json();
+    console.error(error?.message);
+    return error;
+  }
+
+  const data: jobDataType = await response.json();
+  return data;
+}
+
+export async function getJob(URL: string): Promise<jobDataType> {
+  const response = await fetch(URL);
+  const data: jobDataType = await response.json();
   return data;
 }

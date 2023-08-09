@@ -4,6 +4,7 @@ import LandingPage from './main/LandingPage';
 import Signup from './signup/Signup';
 import Login from './login/Login';
 import Dashboard from './main/Dashboard';
+import TablePanel from '../components/TablePanel';
 
 const routes = [
   // Sign up page
@@ -21,22 +22,30 @@ const routes = [
   },
   // Main App
   {
-    path: '/demo',
+    path: 'demo',
     element: <Root />,
     children: [
       {
-        path: '/demo',
+        path: '',
         element: <HomeDemo />,
+      },
+      {
+        path: 'job/:id',
+        element: <TablePanel />,
       },
     ],
   },
   {
-    path: '/dashboard',
+    path: 'dashboard',
     element: <Root />,
     children: [
       {
-        path: '/dashboard',
+        path: '',
         element: <Dashboard />,
+      },
+      {
+        path: 'job/:id',
+        element: <TablePanel />,
       },
     ],
   },

@@ -14,7 +14,7 @@ function Root() {
           <Link to={'/'} className={styles.link}>
             <li className={styles.navItemImage}>
               <img
-                src="src/assets/careercompasslogo.png"
+                src="../src/assets/careercompasslogo.png"
                 alt="logo"
                 className={styles.logoImage}
               />
