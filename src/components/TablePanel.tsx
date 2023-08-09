@@ -1,17 +1,27 @@
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router';
-import { errorLogin, jobDataType, getJobByUser } from '../api/JobApplications';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useNavigate, useParams, useLocation } from 'react-router';
+import { useState } from 'react';
+import {
+  errorLogin,
+  jobDataType,
+  getJobByUser,
+  getJob,
+  postJobByUser,
+} from '../api/JobApplications';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import SessionExpired from './SessionExpired';
 import styles from './tablepanel.module.css';
+import { ColorKey } from './JobsTables';
 
 type Inputs = {
   title: string;
   company: string;
+  logo: string;
   status: string;
+  date: string;
   location: string;
   salary: number;
-  color: string;
+  color: ColorKey;
   postUrl: string;
   description: string;
 };
@@ -20,33 +30,87 @@ const TablePanel = () => {
   const { id: stringId } = useParams();
   const id = String(stringId);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const location = useLocation();
 
-  const {
-    status,
-    error,
-    data: jobData,
-  } = useQuery<jobDataType | number | errorLogin>(['jobs'], () =>
-    getJobByUser(
-      `https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/job/`,
-      id
-    )
-  );
+  const isDashboardPath = location.pathname.includes('dashboard');
+  const queryKey = isDashboardPath ? 'job' : 'jobDemo';
+  const fetchData = isDashboardPath ? () => getJobByUser(id) : () => getJob(id);
+  const [jobData, setJobData] = useState<jobDataType | null>(null);
+
+  const [showImageInput, setShowImageInput] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const isJobData = (data: any): data is jobDataType => {
     return data && typeof data === 'object' && 'title' in data;
   };
 
+  const { register, handleSubmit } = useForm<Inputs>();
+
+  const { status } = useQuery<jobDataType | number | errorLogin>(
+    [queryKey, id],
+    fetchData,
+    {
+      onSuccess: (data) => {
+        if (isJobData(data)) {
+          setJobData(data);
+        }
+      },
+    }
+  );
+
+  const updateJobOnSubmit: SubmitHandler<Inputs> = (formData) => {
+    if (isDashboardPath && isJobData(jobData)) {
+      postJobByUser(jobData.id, {
+        title: formData.title,
+        company: formData.company,
+        logo: formData.logo,
+        status: formData.status,
+        date: formData.date,
+        location: formData.location,
+        salary: formData.salary,
+        color: formData.color,
+        postUrl: formData.postUrl,
+        description: formData.description,
+      }).then(() => {
+        queryClient.invalidateQueries(['jobs']);
+        queryClient.invalidateQueries(['job', id]);
+      });
+    }
+    isDashboardPath ? navigate('/dashboard') : navigate('/demo');
+  };
+
   if (status == 'success' && isJobData(jobData)) {
     return (
       <div className="content">
-        <div className={styles.panel}>
+        <form
+          action="PUT"
+          onSubmit={handleSubmit(updateJobOnSubmit)}
+          className={styles.panel}
+        >
+          <img
+            src={jobData?.logo}
+            alt="logo"
+            onClick={() => setShowImageInput(!showImageInput)}
+            className={styles.logo}
+          />
+          {showImageInput && (
+            <div className={styles.panelContent}>
+              <div className={styles.inputAction}>
+                <label htmlFor="title">Logo URL</label>
+                <input
+                  type="text"
+                  {...register('logo')}
+                  className={styles.inputLogo}
+                  defaultValue={jobData?.logo}
+                  placeholder="+ add a logo URL"
+                />
+              </div>
+            </div>
+          )}
           <h2>{jobData?.title}</h2>
           <p>{jobData?.company}</p>
+
           <div className={styles.panelContent}>
             <div className={styles.inputAction}>
               <label htmlFor="title">Title</label>
@@ -78,6 +142,17 @@ const TablePanel = () => {
                 className={styles.input}
                 defaultValue={jobData?.status}
                 placeholder="+ add a status"
+              />
+            </div>
+
+            <div className={styles.inputAction}>
+              <label htmlFor="status">Deadline</label>
+              <input
+                type="text"
+                {...register('date')}
+                className={styles.input}
+                defaultValue={jobData?.date}
+                placeholder="+ add a deadline"
               />
             </div>
 
@@ -135,15 +210,16 @@ const TablePanel = () => {
             </div>
           </div>
           <button className={styles.btn}>Submit</button>
-        </div>
+        </form>
       </div>
     );
   }
 
   if (
+    jobData != null &&
     typeof jobData === 'object' &&
     'code' in jobData &&
-    jobData.code === 401
+    jobData?.code === 401
   ) {
     return <SessionExpired />;
   }

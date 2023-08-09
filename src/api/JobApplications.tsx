@@ -12,6 +12,19 @@ export interface jobDataType {
   color: 'RED' | 'BLACK' | 'ORANGE' | 'TEAL' | 'BLUE';
 }
 
+export interface jobPostType {
+  title: string;
+  logo: string;
+  company: string;
+  salary: number;
+  description: string;
+  date: string;
+  location: string;
+  status: string;
+  postUrl: string;
+  color: 'RED' | 'BLACK' | 'ORANGE' | 'TEAL' | 'BLUE';
+}
+
 export interface errorLogin {
   code: number;
   message: string;
@@ -44,14 +57,17 @@ export async function getJobApplicationsByUser(
   return data;
 }
 
-export async function getJobByUser(URL: string, id: string) {
-  const response = await fetch(URL + id, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-    },
-  });
+export async function getJobByUser(id: string) {
+  const response = await fetch(
+    `https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/job/${id}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+    }
+  );
 
   if (response.status === 401) {
     const error = await response.json();
@@ -63,8 +79,34 @@ export async function getJobByUser(URL: string, id: string) {
   return data;
 }
 
-export async function getJob(URL: string): Promise<jobDataType> {
-  const response = await fetch(URL);
+export async function getJob(id: string): Promise<jobDataType> {
+  const response = await fetch(
+    `https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/demo/job/${id}`
+  );
+  const data: jobDataType = await response.json();
+  return data;
+}
+
+/*************** Post **********************/
+export async function postJobByUser(id: string, body: jobPostType) {
+  const response = await fetch(
+    `https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/job/${id}/update`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+      body: JSON.stringify(body),
+    }
+  );
+
+  if (response.status === 401) {
+    const error = await response.json();
+    console.error(error?.message);
+    return error;
+  }
+
   const data: jobDataType = await response.json();
   return data;
 }

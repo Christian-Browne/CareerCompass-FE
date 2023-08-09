@@ -12,6 +12,14 @@
 
 .input {
   padding: 1.5em;
+  max-width: 20em;
+  border: 1px solid darkgrey;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.inputLogo {
+  padding: 1.5em;
   width: 20em;
   border: 1px solid darkgrey;
   border-radius: 10px;
@@ -29,15 +37,19 @@
   margin-bottom: 0.5em;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .btn {
   color: white;
   padding: 1.5em 4em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  width: 16em;
+  max-width: 16em;
   font-size: 1.2rem;
-  margin: 4px 2px;
+  margin: 2em 2px;
   cursor: pointer;
   background-color: #103778;
   border: none;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CircularProgress, Alert } from '@mui/material';
 import styles from './login.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Inputs = {
   email: string;
@@ -56,11 +56,13 @@ function Login() {
       className={styles.form}
     >
       <div className={styles.header}>
-        <img
-          src="src/assets/careercompasslogo.png"
-          alt="logo"
-          className={styles.logo}
-        />
+        <Link to={'/'}>
+          <img
+            src="src/assets/careercompasslogo.png"
+            alt="logo"
+            className={styles.logo}
+          />
+        </Link>
         <h2>Sign in</h2>
         <p>to continue to Career Compass</p>
       </div>
@@ -78,6 +80,9 @@ function Login() {
           className={styles.input}
           placeholder="Password"
         />
+        <Link to={'/signup'}>
+          <p className={styles.ctaLink}>Create an account</p>
+        </Link>
 
         <button type="submit" className={styles.btn}>
           {status == 202 ? <CircularProgress color="inherit" /> : 'Submit'}

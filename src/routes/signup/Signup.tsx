@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CircularProgress, Alert } from '@mui/material';
 import styles from './signup.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 type Inputs = {
   firstname: string;
@@ -62,11 +62,13 @@ const Signup = () => {
       className={styles.form}
     >
       <div className={styles.header}>
-        <img
-          src="src/assets/careercompasslogo.png"
-          alt="logo"
-          className={styles.logo}
-        />
+        <Link to={'/'}>
+          <img
+            src="src/assets/careercompasslogo.png"
+            alt="logo"
+            className={styles.logo}
+          />
+        </Link>
         <h2>Create account</h2>
         <p>to continue to Career Compass</p>
       </div>

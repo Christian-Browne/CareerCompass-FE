@@ -33,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-type ColorKey = 'RED' | 'BLACK' | 'ORANGE' | 'TEAL' | 'BLUE';
+export type ColorKey = 'RED' | 'BLACK' | 'ORANGE' | 'TEAL' | 'BLUE';
 
 const colorMap: Record<ColorKey, string> = {
   RED: '#E3371E',

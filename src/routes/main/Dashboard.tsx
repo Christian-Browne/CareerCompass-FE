@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router';
 
 import {
   errorLogin,
@@ -12,11 +13,20 @@ import TableSkeleton from '../../components/TableSkeleton';
 function Dashboard() {
   const { status, data: jobData } = useQuery<
     jobDataType[] | number | errorLogin
-  >(['jobs'], () =>
-    getJobApplicationsByUser(
-      'https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/home'
-    )
+  >(
+    ['jobs'],
+    () =>
+      getJobApplicationsByUser(
+        'https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/home'
+      ),
+    { staleTime: 0 }
   );
+
+  const navigate = useNavigate();
+
+  if (!sessionStorage.getItem('token')) {
+    navigate('/login');
+  }
 
   if (status === 'loading') {
     return (

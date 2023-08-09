@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './landingPage.module.css';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 const LandingPage = () => {
   return (
@@ -26,7 +27,8 @@ const LandingPage = () => {
             <button className={styles.btn2}>Sign up</button>
           </Link>
           <Link to={'demo'} className={styles.ctaLink}>
-            <p>VIEW DEMO</p>
+            <PlayArrowIcon />
+            <p>VIEW DEMO APP</p>
           </Link>
         </div>
       </div>

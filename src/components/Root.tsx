@@ -23,6 +23,12 @@ function Root() {
           <Link to={'/'} className={styles.link}>
             <li className={styles.navItem}>Home</li>
           </Link>
+          <Link to={'/dashboard'} className={styles.link}>
+            <li className={styles.navItem}>Dashboard</li>
+          </Link>
+          <Link to={'/demo'} className={styles.link}>
+            <li className={styles.navItem}>Demo</li>
+          </Link>
           <Link to={'/login'} className={styles.link}>
             <li className={styles.navItem}>Login</li>
           </Link>
