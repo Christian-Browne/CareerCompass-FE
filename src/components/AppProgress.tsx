@@ -27,17 +27,17 @@ const AppProgress: React.FC<Props> = ({ jobData }) => {
   const getColorForStatus = (status: keyof typeof counts) => {
     switch (status) {
       case 'Applied':
-        return 'linear-gradient(to right, #8FB0D8, #A2C8F2, #8FB0D8)'; // Blue shades
+        return 'radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%)'; // Blue shades
       case 'Pending':
-        return 'linear-gradient(to right, #FFBF80, #FFD1A1, #FFBF80)'; // Orange shades
+        return 'linear-gradient(-60deg, #ff5858 0%, #f09819 100%)'; // Orange shades
       case 'Phone':
-        return 'linear-gradient(to right, #FFF780, #FFFAA4, #FFF780)'; // Yellow shades
+        return 'linear-gradient(109.6deg, rgb(255, 219, 47) 11.2%, rgb(244, 253, 0) 100.2%)'; // Yellow shades
       case 'Onsite':
-        return 'linear-gradient(to right, #92E088, #A8E6A1, #92E088)'; // Green shades
+        return 'linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147))'; // Green shades
       case 'Offered':
-        return 'linear-gradient(to right, #C5A5F7, #D9BDF8, #C5A5F7)'; // Purple shades
+        return 'linear-gradient(to top, #c471f5 0%, #fa71cd 100%)'; // Purple shades
       case 'Rejected':
-        return 'linear-gradient(to right, #FF8888, #FFA4A4, #FF8888)'; // Red shades
+        return 'linear-gradient(102.2deg, rgb(250, 45, 66) 9.6%, rgb(245, 104, 104) 96.1%)'; // Red shades
       default:
         return 'linear-gradient(to right, #D0D0D0, #EAEAEA, #D0D0D0)'; // Grey shades
     }
