@@ -1,13 +1,20 @@
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import styles from './root.module.css';
 import { Link } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
 
 function Root() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div>
         <div className={styles.topNav}>
           <h1>Career Compass Board</h1>
+          <button className={styles.btn} onClick={() => navigate('job/add')}>
+            <AddIcon />
+            Add New Job
+          </button>
         </div>
 
         <div className={styles.sideNavbar}>

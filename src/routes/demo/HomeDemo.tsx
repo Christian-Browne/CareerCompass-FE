@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { jobDataType, getJobApplications } from '../../api/JobApplications';
 import JobsTables from '../../components/JobsTables';
 import ErrorComponent from '../../components/ErrorComponent';
+import AppProgress from '../../components/AppProgress';
 
 function HomeDemo() {
   const {
@@ -26,6 +27,7 @@ function HomeDemo() {
   if (status == 'success') {
     return (
       <div className="content">
+        <AppProgress jobData={jobData} />
         <JobsTables jobData={jobData} />
       </div>
     );

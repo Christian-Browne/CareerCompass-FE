@@ -5,6 +5,7 @@ import Signup from './signup/Signup';
 import Login from './login/Login';
 import Dashboard from './main/Dashboard';
 import TablePanel from '../components/TablePanel';
+import AddJob from './main/AddJob';
 
 const routes = [
   // Sign up page
@@ -33,6 +34,10 @@ const routes = [
         path: 'job/:id',
         element: <TablePanel />,
       },
+      {
+        path: 'job/add',
+        element: <AddJob />,
+      },
     ],
   },
   {
@@ -46,6 +51,10 @@ const routes = [
       {
         path: 'job/:id',
         element: <TablePanel />,
+      },
+      {
+        path: 'job/add',
+        element: <AddJob />,
       },
     ],
   },

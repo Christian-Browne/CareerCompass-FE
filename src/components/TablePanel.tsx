@@ -7,6 +7,7 @@ import {
   getJobByUser,
   getJob,
   postJobByUser,
+  deleteJobByUser,
 } from '../api/JobApplications';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import SessionExpired from './SessionExpired';
@@ -80,6 +81,15 @@ const TablePanel = () => {
     isDashboardPath ? navigate('/dashboard') : navigate('/demo');
   };
 
+  const deleteJob = () => {
+    if (isDashboardPath && isJobData(jobData)) {
+      deleteJobByUser(jobData.id);
+      queryClient.invalidateQueries(['jobs']);
+      queryClient.invalidateQueries(['job', id]);
+      navigate('/dashboard');
+    }
+  };
+
   if (status == 'success' && isJobData(jobData)) {
     return (
       <div className="content">
@@ -108,8 +118,8 @@ const TablePanel = () => {
               </div>
             </div>
           )}
-          <h2>{jobData?.title}</h2>
-          <p>{jobData?.company}</p>
+          <h2 className={styles.headerH2}>{jobData?.title}</h2>
+          <p className={styles.headerP}>{jobData?.company}</p>
 
           <div className={styles.panelContent}>
             <div className={styles.inputAction}>
@@ -136,12 +146,28 @@ const TablePanel = () => {
 
             <div className={styles.inputAction}>
               <label htmlFor="status">Status</label>
+              <select
+                {...register('status')}
+                defaultValue={jobData?.status}
+                className={styles.input}
+              >
+                <option value="Applied">Applied</option>
+                <option value="Pending">Pending</option>
+                <option value="Phone">Phone</option>
+                <option value="Onsite">Onsite</option>
+                <option value="Offered">Offered</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+
+            <div className={styles.inputAction}>
+              <label htmlFor="salary">Salary</label>
               <input
                 type="text"
-                {...register('status')}
+                {...register('salary')}
                 className={styles.input}
-                defaultValue={jobData?.status}
-                placeholder="+ add a status"
+                defaultValue={jobData?.salary}
+                placeholder="+ add a salary"
               />
             </div>
 
@@ -152,7 +178,7 @@ const TablePanel = () => {
                 {...register('date')}
                 className={styles.input}
                 defaultValue={jobData?.date}
-                placeholder="+ add a deadline"
+                placeholder="+ add a deadline DD-MM-YY"
               />
             </div>
 
@@ -169,33 +195,27 @@ const TablePanel = () => {
 
             <div className={styles.inputAction}>
               <label htmlFor="color">Color</label>
-              <input
-                type="text"
+              <select
                 {...register('color')}
-                className={styles.input}
                 defaultValue={jobData?.color}
-              />
-            </div>
-
-            <div className={styles.inputAction}>
-              <label htmlFor="salary">Salary</label>
-              <input
-                type="text"
-                {...register('salary')}
                 className={styles.input}
-                defaultValue={jobData?.salary}
-                placeholder="+ add a salary"
-              />
+              >
+                <option value="RED">Red</option>
+                <option value="BLACK">Black</option>
+                <option value="ORANGE">Orange</option>
+                <option value="TEAL">Teal</option>
+                <option value="BLUE">Blue</option>
+              </select>
             </div>
 
             <div className={styles.inputAction}>
-              <label htmlFor="postUrl">Post Url</label>
+              <label htmlFor="postUrl">Post URL</label>
               <input
                 type="text"
                 {...register('postUrl')}
                 className={styles.input}
                 defaultValue={jobData?.postUrl}
-                placeholder="+ add a url"
+                placeholder="+ add a URL"
               />
             </div>
 
@@ -209,7 +229,12 @@ const TablePanel = () => {
               ></textarea>
             </div>
           </div>
-          <button className={styles.btn}>Submit</button>
+          <div className={styles.btnGroup}>
+            <p className={styles.btnDelete} onClick={deleteJob}>
+              Delete
+            </p>
+            <button className={styles.btn}>Submit</button>
+          </div>
         </form>
       </div>
     );

@@ -110,3 +110,49 @@ export async function postJobByUser(id: string, body: jobPostType) {
   const data: jobDataType = await response.json();
   return data;
 }
+
+export async function deleteJobByUser(id: string) {
+  const response = await fetch(
+    `https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/job/${id}/delete`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+    }
+  );
+
+  if (response.status === 401) {
+    const error = await response.json();
+    console.error(error?.message);
+    return error;
+  }
+
+  if (response.status === 204) {
+    return response.status;
+  }
+}
+
+export async function addJobByUser(body: jobPostType) {
+  const response = await fetch(
+    `https://ghrr97wg4j.execute-api.us-west-1.amazonaws.com/prod/job/add`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+      body: JSON.stringify(body),
+    }
+  );
+
+  if (response.status === 401) {
+    const error = await response.json();
+    console.error(error?.message);
+    return error;
+  }
+
+  const data: jobDataType = await response.json();
+  return data;
+}

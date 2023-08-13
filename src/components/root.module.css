@@ -1,17 +1,22 @@
 .topNav {
+  box-sizing: border-box;
   margin-left: 250px;
-  background-color: #e3371e;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
-  width: 100%;
+  /* width: 100%; */
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em 1em 0;
+  background-color: white;
+  margin-bottom: 2em;
 }
 
 .topNav h1 {
   margin: 0;
   margin-left: 40px;
-  padding: 0.5em 0em;
-  color: #f1f1f1;
+  color: #151f30;
 }
 
 .sideNavbar {
@@ -57,4 +62,25 @@
 
 .link {
   text-decoration: none;
+}
+
+.btn {
+  color: white;
+  padding: 1em 3em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #103778;
+  border: none;
+  transition-duration: 0.4s;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.btn:hover {
+  background-color: #e3371e;
 }

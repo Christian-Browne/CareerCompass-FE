@@ -9,6 +9,7 @@ import {
 import SessionExpired from '../../components/SessionExpired';
 import JobsTables from '../../components/JobsTables';
 import TableSkeleton from '../../components/TableSkeleton';
+import AppProgress from '../../components/AppProgress';
 
 function Dashboard() {
   const { status, data: jobData } = useQuery<
@@ -39,6 +40,7 @@ function Dashboard() {
   if (status == 'success' && Array.isArray(jobData)) {
     return (
       <div className="content">
+        <AppProgress jobData={jobData} />
         <JobsTables jobData={jobData} />
       </div>
     );
