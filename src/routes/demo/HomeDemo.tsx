@@ -32,10 +32,6 @@ function HomeDemo() {
       </div>
     );
   }
-
-  if (status == error) {
-    return <ErrorComponent />;
-  }
 }
 
 export default HomeDemo;
