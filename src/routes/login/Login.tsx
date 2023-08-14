@@ -16,7 +16,7 @@ function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {},
   } = useForm<Inputs>();
 
   const loginOnSubmit: SubmitHandler<Inputs> = async (formData) => {
