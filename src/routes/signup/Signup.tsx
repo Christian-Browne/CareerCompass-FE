@@ -64,7 +64,7 @@ const Signup = () => {
       <div className={styles.header}>
         <Link to={'/'}>
           <img
-            src="src/assets/careercompasslogo.png"
+            src="public/careercompasslogo.png"
             alt="logo"
             className={styles.logo}
           />
