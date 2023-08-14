@@ -15,7 +15,7 @@ const LandingPage = () => {
               Join us on a journey to discover new horizons.
             </p>
             <img
-              src="src/assets/careercompasslogo.png"
+              src="/careercompasslogo.png"
               alt="Logo"
               className={styles.heroImage}
             />
