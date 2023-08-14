@@ -58,7 +58,7 @@ function Login() {
       <div className={styles.header}>
         <Link to={'/'}>
           <img
-            src="public/careercompasslogo.png"
+            src="/careercompasslogo.png"
             alt="logo"
             className={styles.logo}
           />
