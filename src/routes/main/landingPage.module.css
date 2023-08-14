@@ -52,7 +52,7 @@
 
 .hero {
   background: linear-gradient(rgba(95, 122, 163, 0.419), rgba(0, 0, 0, 0.521)),
-    url('public/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg');
+    url('/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg');
   background-size: cover;
   background-position: 50%;
   height: 100vh;
